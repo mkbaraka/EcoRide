@@ -38,11 +38,11 @@ int seleccionarEcoVehiculo(){
 
 	fflush(stdin);
 	scanf("%i",&sel);
-	printf("\n\n")
+
 
 	int Eco = 0;
 
-	for(i=0; i<strlen(sel); i++){
+	for(i=0; i< strlen(sel); i++){
 
 	if(sel[i]=="1"){
 		eco = 1;
@@ -69,6 +69,8 @@ int seleccionarEcoVehiculo(){
 	}
 }
 	return sel;
+
+}
 
 void modificarDisponibilidad(Vehiculo *v){
 
