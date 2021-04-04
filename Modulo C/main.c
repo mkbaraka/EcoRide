@@ -6,4 +6,6 @@
 
 void HacerFactura(EcoVehiculo ev, char* fichero){
 
+
 }
+
