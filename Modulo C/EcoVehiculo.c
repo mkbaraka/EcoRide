@@ -4,6 +4,7 @@
 
 
 
+
 void visualizarEcoVehiculos(EcoVehiculo e){
 
 	printf("Nombre --> %s\n", e.nombre);
@@ -18,7 +19,6 @@ void visualizarEcoVehiculos(EcoVehiculo e){
 
 int seleccionarEcoVehiculo(){
 	int sel;
-	in
 
 
 	printf("Seleccione un EcoVehiculo/n");
@@ -39,6 +39,7 @@ int seleccionarEcoVehiculo(){
 	fflush(stdin);
 	scanf("%i",&sel);
 	printf("\n\n")
+
 	int Eco = 0;
 
 	for(i=0; i<strlen(sel); i++){
@@ -68,5 +69,24 @@ int seleccionarEcoVehiculo(){
 	}
 }
 	return sel;
+
+void modificarDisponibilidad(Vehiculo *v){
+
+	visualizarEcoVehiculos(*v);
+	int d;
+
+	printf("Escriba la nueva disponibilidad \n");
+	fflush(stdin);
+	scanf("%i", &d);
+
+	if(d>=0){
+		v-> disponibles = d;
+	}else{
+		printf("En negativo no esta admitido la disponibilidad\n");
+	}
+
+	return;
+}
+
 }
 
