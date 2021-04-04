@@ -12,10 +12,8 @@ typedef struct ecoVehiculo
 
 } ecoVehiculo;
 
-/*
-
-METODOS HEREDADOS DE LA CLASE DE LA CLASE ECOVEHICULO.C
-
-*/
+void visualizarEcoVehiculos(Vehiculo v);
+int seleccionarEcoVehiculo();
+void modificarDisponibilidad(Vehiculo *v);
 
 #endif
