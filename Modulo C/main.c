@@ -4,8 +4,5 @@
 #include <time.h>
 #include "EcoVehiculo.h"
 
-void HacerFactura(EcoVehiculo ev, char* fichero){
 
-
-}
 
