@@ -14,4 +14,4 @@ typedef struct {
 
 void imprimirCliente(Cliente c);
 
-#endif /* CLIENTE_H_ */
+#endif
