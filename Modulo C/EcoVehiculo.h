@@ -1,7 +1,7 @@
 #ifndef ECOVEHICULO_H_
 #define ECOVEHICULO_H_
 
-typedef struct ecoVehiculo
+typedef struct
 {
     char nombre[20];
     char marca[20];
@@ -10,10 +10,10 @@ typedef struct ecoVehiculo
     float precio;
     int disponibles;
 
-} ecoVehiculo;
+} EcoVehiculo;
 
-void visualizarEcoVehiculos(Vehiculo v);
+void visualizarEcoVehiculos(EcoVehiculo e);
 int seleccionarEcoVehiculo();
-void modificarDisponibilidad(Vehiculo *v);
+void modificarDisponibilidad(EcoVehiculo *e);
 
 #endif

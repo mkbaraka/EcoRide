@@ -71,4 +71,23 @@ int seleccionarEcoVehiculo(){
 
 		return sel;
 	}
+void modificarDisponibilidad(EcoVehiculo *e){
+	//mostramos los EcoVehiculos que disponemos
+	visualizarEcoVehiculos(*e);
+	printf("=======================");
+	int d;
+	printf("Selecciona la disponibilidad ");
+	fflush(stdin);
+	scanf("%i",&d);
+	printf("=======================");
 
+
+	//condicion de que no permita disponibilidad negativo
+	if(d>=0){
+		e->disponibles = d;
+
+	}else{
+		printf("Introduce un valor mayor que 0\n");
+	}
+	return;
+}
