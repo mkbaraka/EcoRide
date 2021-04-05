@@ -39,7 +39,7 @@ int seleccionarEcoVehiculo(){
 	fflush(stdin);
 	scanf("%i",&sel);
 
-
+// creo que esta mal este for
 	int Eco = 0;
 
 	for(i=0; i< strlen(sel); i++){
@@ -87,8 +87,7 @@ void modificarDisponibilidad(Vehiculo *v){
 		printf("En negativo no esta admitido la disponibilidad\n");
 	}
 
-	return;
-}
 
+	return;
 }
 
