@@ -23,7 +23,7 @@ int seleccionarEcoVehiculo(){
 
 	printf("Seleccione un EcoVehiculo\n");
 		printf("Patinetes electricas\n");
-		printf("1. Patinete Electrice Xiaomi 15\n" );
+		printf("1. Patinete Electrice 15 Xiaomi \n" );
 		printf("2. Patinete Electrico Ninebot Segway Max 630\n" );
 		printf("3. Patinete Electrico CECOTEC Outsider Demigod Makalu \n");
 		printf("4. Patinete Electrico Ninebot KickScooter E45E\n");
