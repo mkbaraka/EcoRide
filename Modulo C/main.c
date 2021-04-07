@@ -3,6 +3,7 @@
 #include <String.h>
 #include <time.h>
 #include "EcoVehiculo.h"
+#include "Cuestionario.h"
 
 
 void leerFichero(EcoVehiculo *EcoV1, EcoVehiculo *EcoV2, EcoVehiculo *EcoV3,EcoVehiculo *EcoV4,
@@ -172,7 +173,8 @@ int main(){
 				printf(" Otras opciones\n");
 				printf("\n");
 				printf("11.Comprar EcoVehiculo\n");
-				printf("12.Modificar disponibilidad\n");
+				printf("12.Realizar cuestionario\n");
+				printf("13.Modificar disponibilidad\n");
 
 
 				printf("\n");
@@ -199,7 +201,8 @@ int main(){
 	case 8: visualizarEcoVehiculos(*EcoV8);break;
 	case 9: visualizarEcoVehiculos(*EcoV9);break;
 	case 10: visualizarEcoVehiculos(*EcoV10);break;
-	case 11: e = seleccionarEcoVehiculo();
+	case 11: e = seleccionarEcoVehiculo();break;
+	case 12: visualizarCuestionario();break;
 
 	//Aqui utilizariamos un metodo que nos permita hacer una factura de la compra de un EcoVehiculo.
 
@@ -210,32 +213,10 @@ int main(){
 
 		//Cuestionario post-realizar compra
 
-		printf("Las respuestas a estas preguntas seran exclusivamente para la empresa EcoRide");
-		printf("Has tenido alguna dificultad a la hora de realizar la compra En caso de que si, cual");
-		fflush(stdin);
-		scanf("%s", &r);
-		printf("Has sentido seguridad y confianza a la hora de comprar el producto");
-		fflush(stdin);
-		scanf("%s", &r);
-		printf("Anadirias alguna sugerencia o propuesta de mejora, de cara al futuro");
-		fflush(stdin);
-		scanf("%s%", &r);
-		printf("Muchas gracias por su atencion, hasta la proxima")
 
 
 
-
-
-
-
-
-
-
-
-
-
-	break;
-	case 12: e = seleccionarEcoVehiculo();
+	case 13: e = seleccionarEcoVehiculo();
 	if (e == 1){
 		modificarDisponibilidad(EcoV1);
 	}if (e == 2){
