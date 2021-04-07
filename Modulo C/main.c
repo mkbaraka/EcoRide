@@ -215,7 +215,7 @@ int main(){
 		scanf("%s", &r);
 		printf("Has sentido seguridad y confianza a la hora de comprar el producto")
 		scanf("%s", &r);
-		printf("Añadirias alguna sugerencia o propuesta de mejora, de cara al futuro")
+		printf("Anadirias alguna sugerencia o propuesta de mejora, de cara al futuro")
 		scanf("%s%", &r);
 		printf("Muchas gracias por su atencion, ¡hasta la proxima!")
 
