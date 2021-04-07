@@ -202,18 +202,11 @@ int main(){
 	case 9: visualizarEcoVehiculos(*EcoV9);break;
 	case 10: visualizarEcoVehiculos(*EcoV10);break;
 	case 11: e = seleccionarEcoVehiculo();break;
-	case 12: visualizarCuestionario();break;
-
-	//Aqui utilizariamos un metodo que nos permita hacer una factura de la compra de un EcoVehiculo.
-
-
 		printf("Compra realizada correctamente\n");
 
+//Aqui utilizariamos un metodo que nos permita hacer una factura de la compra de un EcoVehiculo.
 
-
-		//Cuestionario post-realizar compra
-
-
+	case 12: visualizarCuestionario();break;
 
 
 	case 13: e = seleccionarEcoVehiculo();
