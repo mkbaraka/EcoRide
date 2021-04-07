@@ -211,13 +211,13 @@ int main(){
 		//Cuestionario post-realizar compra
 
 		printf("Las respuestas a estas preguntas seran exclusivamente para la empresa EcoRide");
-		printf("¿Has tenido alguna dificultad a la hora de realizar la compra? En caso de que si, ¿cual?");
+		printf("Has tenido alguna dificultad a la hora de realizar la compra En caso de que si, cual");
+		scanf("%s", &r);
+		printf("Has sentido seguridad y confianza a la hora de comprar el producto")
+		scanf("%s", &r);
+		printf("Añadirias alguna sugerencia o propuesta de mejora, de cara al futuro")
 		scanf("%s%", &r);
-		printf("¿Has sentido seguridad y confianza a la hora de comprar el producto?")
-		scanf("%s%", &r);
-		printf("¿Añadirias alguna sugerencia o propuesta de mejora, de cara al futuro?")
-		scanf("%s%", &r);
-		printf("Muchas gracias por su atención, ¡hasta la proxima!")
+		printf("Muchas gracias por su atencion, ¡hasta la proxima!")
 
 
 
