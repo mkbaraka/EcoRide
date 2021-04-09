@@ -291,7 +291,7 @@ int main()
 	ecove[8] = *EcoV9;
 	ecove[9] = *EcoV10;
 
-	almacenarEcoVEhiculo(ecove, 10);
+	almacenarEcoVehiculos(ecove, 10);
 
 	free(EcoV1);
 	free(EcoV2);
