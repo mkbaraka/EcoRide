@@ -26,7 +26,7 @@ int leerFichero(EcoVehiculo *vehiculos)
 {
 
     FILE *fichero;
-    int n = 0;
+    int n = 0; 
     if ((fichero = fopen("EcoVehiculo.dat", "rb")) == NULL)
     {
         return 0;
@@ -81,13 +81,13 @@ EcoVehiculo pedirDatosEcoVehiculo()
     printf("Introduce la marca: ");
     fflush(stdin);
     gets(e.marca);
-    printf("Introduce la automonía: ");
+    printf("Introduce la automia: ");
     fflush(stdin);
     scanf("%d", &e.autonomia);
     printf("Introduce el precio: ");
     fflush(stdin);
     scanf("%f", &e.precio);
-    printf("Introduce el número de unidades disponibles: ");
+    printf("Introduce el numero de unidades disponibles: ");
     fflush(stdin);
     scanf("%d", &e.disponibles);
     return e;
@@ -103,7 +103,7 @@ void insertarNuevosVehiculos(EcoVehiculo *vehiculos, int *n)
         (*n)++;
         do
         {
-            printf("¿Hay más (s/n)? ");
+            printf("Hay mas (s/n)? ");
             fflush(stdin);
             scanf("%c", &resp);
         } while (resp != 's' && resp != 'n');
