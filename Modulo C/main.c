@@ -3,31 +3,38 @@
 #include <String.h>
 #include <time.h>
 #include "EcoVehiculo.h"
+#include "EcoVehiculo.c"
 #include "Cuestionario.h"
 
-void leerFichero(EcoVehiculo *EcoV1, EcoVehiculo *EcoV2, EcoVehiculo *EcoV3, EcoVehiculo *EcoV4,
-				 EcoVehiculo *EcoV5, EcoVehiculo *EcoV6, EcoVehiculo *EcoV7, EcoVehiculo *EcoV8, EcoVehiculo *EcoV9, EcoVehiculo *EcoV10)
+void imprimirFactura(EcoVehiculo e)
+{
+	FILE *fichero;
+	fichero = fopen("Factura.txt", "w");
+	if (fichero == NULL)
+	{
+		return;
+	}
+	fprintf(fichero, "Nombre --> %s\n", e.nombre);
+	fprintf(fichero, "Marca --> %s\n", e.marca);
+	fprintf(fichero, "Modelo --> %s\n", e.modelo);
+	fprintf(fichero, "Precio --> %f\n", e.precio);
+	fclose(fichero);
+}
+int leerFichero(EcoVehiculo *vehiculos)
 {
 
 	FILE *fichero;
-
+	int n = 0;
 	if ((fichero = fopen("EcoVehiculos.dat", "rb")) == NULL)
 	{
-
-		return;
+		return 0;
 	}
-	fread(EcoV1, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV2, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV3, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV4, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV5, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV6, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV7, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV8, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV9, sizeof(EcoVehiculo), 1, fichero);
-	fread(EcoV10, sizeof(EcoVehiculo), 1, fichero);
-
+	while (fread(&vehiculos[n], sizeof(EcoVehiculo), 1, fichero) != 0)
+	{
+		n++;
+	}
 	fclose(fichero);
+	return n;
 }
 
 void almacenarEcoVehiculos(EcoVehiculo *ecove, int nEcove)
@@ -57,105 +64,88 @@ int main()
 {
 
 	//Eco patines
-	EcoVehiculo *EcoV1;
-	EcoV1 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV1->nombre, "Patinete");
-	strcpy(EcoV1->marca, "xiaomi");
-	strcpy(EcoV1->modelo, "Electrice 15");
-	EcoV1->autonomia = 20;
-	EcoV1->precio = 499.99;
-	EcoV1->disponibles, 1;
+	int n = 10;
+	EcoVehiculo *vehiculos;
+	vehiculos = (EcoVehiculo *)malloc(n * sizeof(EcoVehiculo));
+	strcpy(vehiculos[0].nombre, "Patinete");
+	strcpy(vehiculos[0].marca, "xiaomi");
+	strcpy(vehiculos[0].modelo, "Electrice 15");
+	vehiculos[0].autonomia = 20;
+	vehiculos[0].precio = 499.99;
+	vehiculos[0].disponibles, 1;
 
-	EcoVehiculo *EcoV2;
-	EcoV2 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV2->nombre, "Patinete");
-	strcpy(EcoV2->marca, "Ninebot");
-	strcpy(EcoV2->modelo, "Segway Max 630");
-	EcoV2->autonomia = 22;
-	EcoV2->precio = 399.99;
-	EcoV2->disponibles, 0;
+	strcpy(vehiculos[1].nombre, "Patinete");
+	strcpy(vehiculos[1].marca, "Ninebot");
+	strcpy(vehiculos[1].modelo, "Segway Max 630");
+	vehiculos[1].autonomia = 22;
+	vehiculos[1].precio = 399.99;
+	vehiculos[1].disponibles, 0;
 
-	EcoVehiculo *EcoV3;
-	EcoV3 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV3->nombre, "Patinete");
-	strcpy(EcoV3->marca, "CECOTEC");
-	strcpy(EcoV3->modelo, "Segway Max 630");
-	EcoV3->autonomia = 24;
-	EcoV3->precio = 249.99;
-	EcoV3->disponibles, 2;
+	strcpy(vehiculos[2].nombre, "Patinete");
+	strcpy(vehiculos[2].marca, "CECOTEC");
+	strcpy(vehiculos[2].modelo, "Segway Max 630");
+	vehiculos[2].autonomia = 24;
+	vehiculos[2].precio = 249.99;
+	vehiculos[2].disponibles, 2;
 
-	EcoVehiculo *EcoV4;
-	EcoV4 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV4->nombre, "Patinete");
-	strcpy(EcoV4->marca, "Ninebot");
-	strcpy(EcoV4->modelo, "KickScooter E45E");
-	EcoV4->autonomia = 18;
-	EcoV4->precio = 350.0;
-	EcoV4->disponibles, 3;
+	strcpy(vehiculos[3].nombre, "Patinete");
+	strcpy(vehiculos[3].marca, "Ninebot");
+	strcpy(vehiculos[3].modelo, "KickScooter E45E");
+	vehiculos[3].autonomia = 18;
+	vehiculos[3].precio = 350.0;
+	vehiculos[3].disponibles, 3;
 
-	EcoVehiculo *EcoV5;
-	EcoV5 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV5->nombre, "Patinete");
-	strcpy(EcoV5->marca, "EGRET-TEN");
-	strcpy(EcoV5->modelo, "V3 x 48V");
-	EcoV5->autonomia = 60;
-	EcoV5->precio = 699.99;
-	EcoV5->disponibles, 2;
+	strcpy(vehiculos[4].nombre, "Patinete");
+	strcpy(vehiculos[4].marca, "EGRET-TEN");
+	strcpy(vehiculos[4].modelo, "V3 x 48V");
+	vehiculos[4].autonomia = 60;
+	vehiculos[4].precio = 699.99;
+	vehiculos[4].disponibles, 2;
 
-	//EcoBicicletas
-	EcoVehiculo *EcoV6;
-	EcoV6 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV6->nombre, "Bicicleta");
-	strcpy(EcoV6->marca, "Orbea");
-	strcpy(EcoV6->modelo, "Gain 030 1X");
-	EcoV6->autonomia = 70;
-	EcoV6->precio = 1499.99;
-	EcoV6->disponibles, 1;
+	strcpy(vehiculos[5].nombre, "Bicicleta");
+	strcpy(vehiculos[5].marca, "Orbea");
+	strcpy(vehiculos[5].modelo, "Gain 030 1X");
+	vehiculos[5].autonomia = 70;
+	vehiculos[5].precio = 1499.99;
+	vehiculos[5].disponibles, 1;
 
-	EcoVehiculo *EcoV7;
-	EcoV7 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV7->nombre, "Bicicleta");
-	strcpy(EcoV7->marca, "Orbea");
-	strcpy(EcoV7->modelo, "Wild F5 H30");
-	EcoV7->autonomia = 80;
-	EcoV7->precio = 1299.99;
-	EcoV7->disponibles, 0;
+	strcpy(vehiculos[6].nombre, "Bicicleta");
+	strcpy(vehiculos[6].marca, "Orbea");
+	strcpy(vehiculos[6].modelo, "Wild F5 H30");
+	vehiculos[6].autonomia = 80;
+	vehiculos[6].precio = 1299.99;
+	vehiculos[6].disponibles, 0;
 
-	EcoVehiculo *EcoV8;
-	EcoV8 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV8->nombre, "Bicicleta");
-	strcpy(EcoV8->marca, "Specialized");
-	strcpy(EcoV8->modelo, "Turbo Vado 51 5.0");
-	EcoV8->autonomia = 90;
-	EcoV8->precio = 1229.99;
-	EcoV8->disponibles, 2;
+	strcpy(vehiculos[7].nombre, "Bicicleta");
+	strcpy(vehiculos[7].marca, "Specialized");
+	strcpy(vehiculos[7].modelo, "Turbo Vado 51 5.0");
+	vehiculos[7].autonomia = 90;
+	vehiculos[7].precio = 1229.99;
+	vehiculos[7].disponibles, 2;
 
-	EcoVehiculo *EcoV9;
-	EcoV9 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV9->nombre, "Bicicleta");
-	strcpy(EcoV9->marca, "lapierre");
-	strcpy(EcoV9->modelo, "overvolt am 5.5");
-	EcoV9->autonomia = 100;
-	EcoV9->precio = 1799.99;
-	EcoV9->disponibles, 4;
+	strcpy(vehiculos[8].nombre, "Bicicleta");
+	strcpy(vehiculos[8].marca, "lapierre");
+	strcpy(vehiculos[8].modelo, "overvolt am 5.5");
+	vehiculos[8].autonomia = 100;
+	vehiculos[8].precio = 1799.99;
+	vehiculos[8].disponibles, 4;
 
-	EcoVehiculo *EcoV10;
-	EcoV10 = (EcoVehiculo *)malloc(sizeof(EcoVehiculo));
-	strcpy(EcoV10->nombre, "Bicicleta");
-	strcpy(EcoV10->marca, "Cannondale");
-	strcpy(EcoV10->modelo, "Moterra");
-	EcoV10->autonomia = 120;
-	EcoV10->precio = 1099.99;
-	EcoV10->disponibles, 1;
+	strcpy(vehiculos[9].nombre, "Bicicleta");
+	strcpy(vehiculos[9].marca, "Cannondale");
+	strcpy(vehiculos[9].modelo, "Moterra");
+	vehiculos[9].autonomia = 120;
+	vehiculos[9].precio = 1099.99;
+	vehiculos[9].disponibles, 1;
 
-	leerFichero(EcoV1, EcoV2, EcoV3, EcoV4, EcoV5, EcoV6, EcoV7, EcoV8, EcoV9, EcoV10);
+	almacenarEcoVehiculos(vehiculos, n);
 
 	int sel = 0;
 	int e;
 
 	do
 	{
-		printf("EcoRide tu tienda de Vehiculos EcoFriendly\n");
+		printf("------------------------------------------------------------------------------------------------------------------\n\n");
+		printf("                                EcoRide tu tienda de Vehiculos EcoFriendly\n");
 		printf(" \n ");
 		printf(" Selecciona una opcion: \n");
 		printf(" \n ");
@@ -182,126 +172,39 @@ int main()
 
 		printf("\n");
 
-		printf("                                                   0. Exit\n");
+		printf("                                                   0. Exit\n\n");
+		printf("------------------------------------------------------------------------------------------------------------------\n");
 
 		fflush(stdin);
 		scanf("%i", &sel);
 		printf("\n");
-
-		switch (sel)
+		if (sel >= 1 && sel <= 10)
+			visualizarEcoVehiculos(vehiculos[sel - 1]);
+		else
 		{
+			switch (sel)
+			{
 
-		case 1:
-			visualizarEcoVehiculos(*EcoV1);
-			break;
-		case 2:
-			visualizarEcoVehiculos(*EcoV2);
-			break;
-		case 3:
-			visualizarEcoVehiculos(*EcoV3);
-			break;
-		case 4:
-			visualizarEcoVehiculos(*EcoV4);
-			break;
-		case 5:
-			visualizarEcoVehiculos(*EcoV5);
-			break;
-		case 6:
-			visualizarEcoVehiculos(*EcoV6);
-			break;
-		case 7:
-			visualizarEcoVehiculos(*EcoV7);
-			break;
-		case 8:
-			visualizarEcoVehiculos(*EcoV8);
-			break;
-		case 9:
-			visualizarEcoVehiculos(*EcoV9);
-			break;
-		case 10:
-			visualizarEcoVehiculos(*EcoV10);
-			break;
-		case 11:
-			e = seleccionarEcoVehiculo();
-			break;
-			printf("Compra realizada correctamente\n");
+			case 11:
+				e = seleccionarEcoVehiculo();
+				break;
+				printf("Compra realizada correctamente\n");
+				imprimirFactura(vehiculos[e - 1]);
 
-			//Aqui utilizariamos un metodo que nos permita hacer una factura de la compra de un EcoVehiculo.
-
-		case 12:
-			visualizarCuestionario();
-			break;
-
-		case 13:
-			e = seleccionarEcoVehiculo();
-			if (e == 1)
-			{
-				modificarDisponibilidad(EcoV1);
+				//Aqui utilizariamos un metodo que nos permita hacer una factura de la compra de un EcoVehiculo.
+			case 12:
+				//visualizarCuestionario();
+				break;
+			case 13:
+				e = seleccionarEcoVehiculo();
+				//modificarDisponibilidad(vehiculos[e - 1]);
 			}
-			if (e == 2)
-			{
-				modificarDisponibilidad(EcoV2);
-			}
-			if (e == 3)
-			{
-				modificarDisponibilidad(EcoV3);
-			}
-			if (e == 4)
-			{
-				modificarDisponibilidad(EcoV4);
-			}
-			if (e == 5)
-			{
-				modificarDisponibilidad(EcoV5);
-			}
-			if (e == 6)
-			{
-				modificarDisponibilidad(EcoV6);
-			}
-			if (e == 7)
-			{
-				modificarDisponibilidad(EcoV7);
-			}
-			if (e == 8)
-			{
-				modificarDisponibilidad(EcoV8);
-			}
-			if (e == 9)
-			{
-				modificarDisponibilidad(EcoV9);
-			}
-			if (e == 10)
-			{
-				modificarDisponibilidad(EcoV10);
-			}
-			break;
 		}
 
 	} while (sel != 0);
 
-	EcoVehiculo ecove[9];
-	ecove[0] = *EcoV1;
-	ecove[1] = *EcoV2;
-	ecove[2] = *EcoV3;
-	ecove[3] = *EcoV4;
-	ecove[4] = *EcoV5;
-	ecove[5] = *EcoV6;
-	ecove[6] = *EcoV7;
-	ecove[7] = *EcoV8;
-	ecove[8] = *EcoV9;
-	ecove[9] = *EcoV10;
+	//almacenarEcoVehiculo(ecove, 10);
 
-	almacenarEcoVehiculos(ecove, 10);
-
-	free(EcoV1);
-	free(EcoV2);
-	free(EcoV3);
-	free(EcoV4);
-	free(EcoV5);
-	free(EcoV6);
-	free(EcoV7);
-	free(EcoV8);
-	free(EcoV9);
-	free(EcoV10);
+	free(vehiculos);
 	return 0;
 }
