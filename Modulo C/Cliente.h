@@ -1,7 +1,6 @@
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
 
-
 typedef struct {
         char* dni;
         char* nombre;

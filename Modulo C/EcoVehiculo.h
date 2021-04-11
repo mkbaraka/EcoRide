@@ -13,7 +13,14 @@ typedef struct
 } EcoVehiculo;
 
 void visualizarEcoVehiculos(EcoVehiculo e);
-int seleccionarEcoVehiculo();
+int seleccionarEcoVehiculo(EcoVehiculo *vehiculos, int n);
 void modificarDisponibilidad(EcoVehiculo *e);
+EcoVehiculo pedirDatosEcoVehiculo();
+void imprimirFactura(EcoVehiculo e);
 
+int leerFichero(EcoVehiculo *vehiculos);
+void almacenarEcoVehiculos(EcoVehiculo *ecove, int nEcove);
+
+void insertarNuevosVehiculos(EcoVehiculo *vehiculos, int *n);
+void mostrarDisponibilidad(EcoVehiculo *vehiculos, int n);
 #endif

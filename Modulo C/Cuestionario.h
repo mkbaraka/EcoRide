@@ -10,7 +10,7 @@ typedef struct
 
 } Cuestionario;
 
-
-void visualizarCuestionario(Cuestionario c);
+void visualizarCuestionario(Cuestionario *c);
+void almacenarDatosCuestionario(Cuestionario c);
 
 #endif
