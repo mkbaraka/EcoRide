@@ -26,7 +26,7 @@ int leerFichero(EcoVehiculo *vehiculos)
 {
 
     FILE *fichero;
-    int n = 0; 
+    int n = 0;
     if ((fichero = fopen("EcoVehiculo.dat", "rb")) == NULL)
     {
         return 0;
@@ -156,14 +156,15 @@ int main()
 
         printf(" Otras opciones\n");
         printf("\n");
-        printf("11.Comprar EcoVehiculo\n");
-        printf("12.Realizar cuestionario\n");
-        printf("13.Modificar disponibilidad\n");
+        printf("101.Comprar EcoVehiculo\n");
+        printf("102.Realizar cuestionario\n");
+        printf("103.Modificar disponibilidad\n");
 
         printf("\n");
 
         printf("                                                   0. Exit\n\n");
         printf("------------------------------------------------------------------------------------------------------------------\n");
+        printf("Nuevos Vehiculos Disponibles...\n ");
 
         for (i = 11; i <= n; i++)
         {
@@ -181,16 +182,17 @@ int main()
             switch (sel)
             {
 
-            case 11:
+            case 101:
                 e = seleccionarEcoVehiculo(vehiculos, n);
-                printf("Compra realizada correctamente\n");
+                printf("\n");
+                printf("Compra realizada correctamente\n\n");
                 imprimirFactura(vehiculos[e - 1]);
                 break;
                 //Aqui utilizariamos un metodo que nos permita hacer una factura de la compra de un EcoVehiculo.
-            case 12:
+            case 102:
                 visualizarCuestionario(&c);
                 break;
-            case 13:
+            case 103:
                 mostrarDisponibilidad(vehiculos, n);
                 e = seleccionarEcoVehiculo(vehiculos, n);
                 modificarDisponibilidad(&vehiculos[e - 1]);
