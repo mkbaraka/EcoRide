@@ -22,7 +22,7 @@ Personalizacion::Personalizacion(char *marca, char *modelo, int autonomia, float
 
 Personalizacion::~Personalizacion()
 {
-    delete[] this->nombre; 
+    delete[] this->nombre;
     delete[] this->color;
     delete[] this->material;
     delete[] this->fechaDeCompra;

@@ -1,0 +1,48 @@
+Factura
+===============================================================================
+[Marca: Xiaomi , Modelo: Patinete Electrice 15, Precio Base : 300]
+[Fecha de compra: 12/01/2000 15:31:10]
+
+Factura
+===============================================================================
+[Marca: Orbea, Modelo: Bicicleta Gain 030 1X, Precio Base : 3000]
+[Fecha de compra: 05/10/2015 09:15:00]
+
+Factura
+===============================================================================
+[Marca: Ninebot, Modelo: Patinete Segway Max 630, Precio Base : 270]
+[Fecha de compra: 10/12/2008 08:30:45]
+
+Factura
+===============================================================================
+[Marca: Orbea, Modelo: Bicicleta Wild F5 H30, Precio Base : 2500]
+[Fecha de compra: 16/03/2014 20:15:50]
+
+Factura
+===============================================================================
+[Marca: Cecotec , Modelo: Patinete Outsider Demigod Makalu, Precio Base : 199]
+[Fecha de compra: 15/09/2019 13:17:33]
+
+Factura
+===============================================================================
+[Marca: Specialized, Modelo: Patiente Turbo Vado 51 5.0, Precio Base : 150]
+[Fecha de compra: 07/01/2006 13:10:47]
+
+Factura
+===============================================================================
+[Marca: Ninebot , Modelo: Patinete KickScooter, Precio Base : 169]
+[Fecha de compra: 01/01/2017 22:15:00]
+
+Factura
+===============================================================================
+[Marca: EMTB Lapierre, Modelo: Overvolt am 5.5 Precio Base : 3500]
+[Fecha de compra: 10/12/2001 10:15:10]
+Factura
+==============================================================================
+[Marca: Egret , Modelo: Ten V3 x 48V, Precio Base : 139]
+[Fecha de compra: 01/09/2013 13:00:00]
+
+Factura
+===============================================================================
+[Marca: Cannondale, Modelo: Moterra, Precio Base : 3199]
+[Fecha de compra: 08/12/2005 13:00:05]
