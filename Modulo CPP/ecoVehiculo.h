@@ -4,7 +4,6 @@
 class EcoVehiculo
 {
 private:
-    char nombre[20];
     char marca[20];
     char modelo[20];
     int autonomia;
@@ -13,9 +12,8 @@ private:
 
 public:
     EcoVehiculo();
-    EcoVehiculo(char *, char *, char *, int, float, int);
+    EcoVehiculo( char *, char *, int, float, int);
     ~EcoVehiculo();
-    char *getNombre();
     char *getMarca();
     char *getModelo();
     int getAutonomia();
