@@ -4,6 +4,7 @@
 class EcoVehiculo
 {
 private:
+
     char marca[20];
     char modelo[20];
     int autonomia;

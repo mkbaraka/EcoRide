@@ -15,7 +15,7 @@ private:
 
 public:
     Personalizacion();
-    Personalizacion(char *, char *, char *, char *, char *, char *);
+    Personalizacion(char *, char *, char *, char *, char *, char *, char *, char *, int, float, int);
     ~Personalizacion();
     char *getNombre();
     char *getColor();

@@ -16,6 +16,7 @@ using namespace std;
 
 typedef struct
 {
+
     char marca[20];
     char modelo[20];
     int autonomia;
@@ -27,6 +28,7 @@ typedef struct
     char fechaDeCompra[20];
     char freno[20];
     char cuentaKm[20];
+    char precioPer[20];
 
 } EcoVehiculoP;
 
@@ -69,7 +71,7 @@ int main(int argc, char **argv)
     strcpy(cuentaKm, "Garmin 630");
     strcpy(precioPer, "299");
 
-    Personalizacion *p2 = new Personalizacion(marca, modelo, 0.0f, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
+    Personalizacion *p2 = new Personalizacion(autonomia, disponible, marca, 0.0f, modelo, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
 
     strcpy(nombre, "Ecopack Fire");
     strcpy(color, "Rojo");
@@ -171,7 +173,7 @@ void verFacturas()
          << "Hay " << cont << " facturas pendientes" << endl;
 }
 
-//hacer metodo para personalizar ventas
+//hacer metodo para personalizar ventas**********************************
 
 void listarVentas()
 {
@@ -197,4 +199,114 @@ void listarVentas()
         }
     }
     in.close();
+}
+
+// Metodo que imprime el importe total de las ventas (EcoVehiculos + personalizacion)
+// Metodo que saca el EcoVehiculo mas vendido
+void estadisticas()
+{
+    EcoVehiculoP ecoVP;
+    int cont = 0;
+    ifstream in(FicheroVentas, ios::in);
+
+    double importeTotal = 0;
+
+    if (in.is_open())
+    {
+        while (!in.eof())
+        {
+            in.read((char *)&ecoVP, sizeof(ecoVP));
+            if (!in.eof())
+            {
+                cont++;
+                importeTotal += ecoVP.precio + atof(ecoVP.precio);
+            }
+        }
+    }
+    in.close();
+
+    printf("Importe total de ventas: %.2f\n\n", importeTotal);
+
+    // Arrays de trabajo para buscar el vehiculo mas vendido
+    Personalizacion *persons[cont];
+    int cuenta[cont];
+    cont = 0;
+
+    ifstream in1(FicheroVentas, ios::in);
+    if (in1.is_open())
+    {
+        while (!in1.eof())
+        {
+            Personalizacion obj;
+            in1.read((char *)&ecoVP, sizeof(ecoVP));
+            if (!in1.eof())
+            {
+                persons[cont] = new Personalizacion(ecoVP.marca, ecoVP.modelo, ecoVP.disponibles, ecoVP.nombre, ecoVP.color, ecoVP.material, ecoVP.fechaDeCompra, ecoVP.freno, ecoVP.cuentaKm, ecoVP.precioPer);
+                cuenta[cont] = 1;
+                cont++;
+            }
+        }
+    }
+    in1.close();
+
+    // Se cuentan los EcoVehiculos de la misma marca
+    for (int i = 0; i < cont; i++)
+    {
+        for (int j = 0; j < cont; j++)
+        {
+            if (i != j)
+            {
+                if (strcmp(persons[i]->getMarca(), persons[j]->getMarca()) == 0)
+                {
+                    cuenta[i] = cuenta[i] + 1;
+                }
+            }
+        }
+    }
+
+    // Se anulan los EcoVehiculos iguales (poniendolos a cero), dejando solo uno
+    for (int i = 0; i < cont - 1; i++)
+    {
+        if (cuenta[i] > 0)
+        {
+            for (int j = i + 1; j < cont; j++)
+            {
+                if (i != j)
+                {
+                    if (strcmp(persons[i]->getMarca(), persons[j]->getMarca()) == 0)
+                    {
+                        cuenta[i] = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    int max = 0;
+    for (int i = 0; i < cont; i++)
+    {
+        if (cuenta[i] > max)
+        {
+            max = cuenta[i];
+        }
+    }
+
+    cout << "El EcoVehiculo mas vendido es:" << endl;
+    for (int i = 0; i < cont; i++)
+    {
+        if (cuenta[i] == max)
+        {
+            persons[i]->imprimirEcoVehiculo();
+            if (max == 1)
+            {
+                cout << "Vendido " << max << " vez " << endl
+                     << endl;
+            }
+            else
+            {
+                cout << "Vendido " << max << " veces " << endl
+                     << endl;
+            }
+        }
+    }
 }
