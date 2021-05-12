@@ -42,15 +42,13 @@ int main(int argc, char **argv)
 
     char marca[20];
     char modelo[20];
-    int autonomia;
-    int disponible;
     char nombre[20];
     char color[20];
-    char material[20];
-    char fechaDeCompra[20];
+    char material[30];
     char freno[20];
     char cuentaKm[20];
     char precioPer[20];
+    char fechaDeCompra[20];
 
     strcpy(marca, "");
     strcpy(modelo, "");
@@ -62,7 +60,7 @@ int main(int argc, char **argv)
     strcpy(freno, "Mecanico");
     strcpy(cuentaKm, "Garmin 530");
     strcpy(precioPer, "199");
-    Personalizacion *p1 = new Personalizacion(marca, modelo, 0.0f, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
+    Personalizacion *p1 = new Personalizacion(marca, modelo, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
 
     strcpy(nombre, "Ecopack Water");
     strcpy(color, "Azul");
@@ -71,7 +69,7 @@ int main(int argc, char **argv)
     strcpy(cuentaKm, "Garmin 630");
     strcpy(precioPer, "299");
 
-    Personalizacion *p2 = new Personalizacion(autonomia, disponible, marca, 0.0f, modelo, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
+    Personalizacion *p2 = new Personalizacion(marca, modelo, 0.0f, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
 
     strcpy(nombre, "Ecopack Fire");
     strcpy(color, "Rojo");
@@ -175,6 +173,216 @@ void verFacturas()
 
 //hacer metodo para personalizar ventas**********************************
 
+void personalizarVentas(Personalizacion *p1, Personalizacion *p2, Personalizacion *p3)
+{
+    ifstream reader;
+    string linea;
+
+    reader.open(FicheroFacturacion, ios::in);
+    if (!reader)
+    {
+        cout << "Error al abrir el fichero" << endl;
+
+        return;
+    }
+    // Contamos el numero de lineas para saber cuantos Ecovehiculos hay (cada Ecovehiculo tiene 4 lineas en el fichero)
+    int cont = 0;
+    while (!reader.eof())
+    {
+        getline(reader, linea);
+        cont++;
+    }
+    reader.close();
+    cont = cont / 4;
+
+    // array de ecovehiculos
+    EcoVehiculo EcoVehiculos[cont];
+    // Array con las fechas
+    string fechas[cont];
+
+    char *marca;
+    char *modelo;
+    string fecha;
+    char *preciox;
+    float precio;
+
+    reader.open(FicheroFacturacion, ios::in);
+
+    if (!reader)
+    {
+        cout << "Error al abrir el fichero" << endl;
+        return;
+    }
+    // Se lee el fichero de compras de vehiculos y se extraen los datos del vehiculo
+    // , luego los cargamos en el array
+    cont = 0;
+    while (!reader.eof())
+    {
+        getline(reader, linea);
+        if (linea.substr(0, 8) == "[Marca: ")
+        {
+            int pos = 0;
+            int ind;
+            for (int i = 8; i < linea.length(); i++)
+            {
+                if (linea.substr(i, 1) != ",")
+                {
+                    pos++;
+                }
+                else
+                {
+                    ind = i;
+                    break;
+                }
+            }
+
+            marca = strdup(linea.substr(8, pos).c_str());
+            //cout << "Marca: " << marca << endl;
+            ind += 10;
+            pos = 0;
+            int ind1;
+            for (int i = ind; i < linea.length(); i++)
+            {
+                if (linea.substr(i, 1) != ",")
+                {
+                    pos++;
+                }
+                else
+                {
+                    ind1 = i;
+                    break;
+                }
+            }
+            modelo = strdup(linea.substr(ind, pos).c_str());
+            //cout << "Modelo: " << modelo << endl;
+            ind1 += 16;
+            pos = 0;
+            for (int i = ind1; i < linea.length(); i++)
+            {
+                if (linea.substr(i, 1) != "]")
+                {
+                    pos++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            preciox = strdup(linea.substr(ind1, pos).c_str());
+            precio = atof(preciox);
+        }
+
+        if (linea.substr(0, 18) == "[Fecha de compra: ")
+        {
+            int pos = 0;
+            int ind;
+            for (int i = 18; i < linea.length(); i++)
+            {
+                if (linea.substr(i, 1) != "]")
+                {
+                    pos++;
+                }
+                else
+                {
+                    ind = i;
+                    break;
+                }
+            }
+            fecha = linea.substr(18, pos);
+
+            EcoVehiculo ecovh(marca, modelo, precio);
+            EcoVehiculos[cont] = ecovh;
+            fechas[cont] = fecha;
+            cont++;
+        }
+    }
+    reader.close();
+    int selec;
+    do
+    {
+        cout << "Escoja un ecoVehiculo para personalizar ( 1 - " << cont << "): ";
+        cin >> selec;
+    } while (selec < 1 || selec > cont);
+
+    // Menu para seleccionar uno de los tres paquetes personalizados por pantalla, que estan creados y que se agreguen a la fichero de ventas de la parte de c++
+    cout << endl;
+    p1->imprimirPersonal();
+    p2->imprimirPersonal();
+    p3->imprimirPersonal();
+
+    Personalizacion *pe;
+
+    int selecp;
+    do
+    {
+        cout << "Escoja una modelo para personalizar ( 1 - 3 ) : ";
+        cin >> selecp;
+
+        switch (selecp)
+        {
+        case 1:
+            pe = p1;
+            break;
+        case 2:
+            pe = p2;
+            break;
+        case 3:
+            pe = p3;
+            break;
+        }
+
+    } while (selecp < 1 || selecp > 3);
+
+    time_t tiempo = time(0);
+    struct tm *tlocal = localtime(&tiempo);
+    char fechax[128];
+    strftime(fechax, 128, "%d/%m/%Y %H:%M:%S", tlocal);
+    pe->setFechaCompra(fechax);
+
+    // Creamos la personalizacion y la anadimos al fichero de Ventas
+    EcoVehiculoP ecoVP;
+
+    strcpy(ecoVP.marca, EcoVehiculos[selec - 1].getMarca());
+    strcpy(ecoVP.modelo, EcoVehiculos[selec - 1].getModelo());
+    ecoVP.precio = EcoVehiculos[selec - 1].getPrecio();
+    strcpy(ecoVP.nombre, pe->getNombre());
+    strcpy(ecoVP.color, pe->getColor());
+    strcpy(ecoVP.material, pe->getMaterial());
+    strcpy(ecoVP.fechaDeCompra, pe->getFechaDeCompra());
+    strcpy(ecoVP.freno, pe->getFreno());
+    strcpy(ecoVP.cuentaKm, pe->getCuentaKm());
+
+    ofstream out(FicheroVentas, ios::app | ios::binary);
+
+    if (out.is_open())
+    {
+        out.write((char *)&ecoVP, sizeof(ecoVP));
+    }
+    out.close();
+
+    // Borramos la factura del fichero de facturas
+    ofstream ofs(FicheroFacturacion, ios::trunc);
+
+    if (!ofs)
+    {
+        cout << "Error al borrar la factura" << endl;
+        return;
+    }
+
+    for (int i = 0; i < cont; i++)
+    {
+        if (i != (selec - 1))
+        {
+            ofs << "      Factura" << endl;
+            ofs << "===================" << endl;
+            ofs << "[Marca: " << EcoVehiculos[i].getMarca() << ", Modelo: " << EcoVehiculos[i].getModelo() << ", Precio: " << EcoVehiculos[i].getPrecio() << "]" << endl;
+            ofs << "[ Fecha de compra: " << fechas[i] << "]" << endl;
+        }
+    }
+
+    ofs.close();
+}
+
 void listarVentas()
 {
     EcoVehiculoP ecoVP;
@@ -219,7 +427,7 @@ void estadisticas()
             if (!in.eof())
             {
                 cont++;
-                importeTotal += ecoVP.precio + atof(ecoVP.precio);
+                importeTotal += ecoVP.precio + atof(ecoVP.precioPer);
             }
         }
     }

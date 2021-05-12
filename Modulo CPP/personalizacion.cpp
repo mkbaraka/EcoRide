@@ -8,10 +8,8 @@ using namespace std;
 Personalizacion::Personalizacion() : EcoVehiculo()
 {
 }
-
-Personalizacion::Personalizacion(char *marca, char *modelo, int autonomia, float precio, int disponibles, char *nombre, char *color, char *material, char *fechaDeCompra, char *freno, char *cuentaKm) : EcoVehiculo(marca, modelo, autonomia, precio, disponibles)
+Personalizacion::Personalizacion(char *marca, char *modelo, char *nombre, char *color, char *material, char *fechaDeCompra, char *freno, char *cuentaKm, int autonomia, float precio, int disponibles) : EcoVehiculo(marca, modelo, autonomia, precio, disponibles)
 {
-
     strcpy(this->nombre, nombre);
     strcpy(this->color, color);
     strcpy(this->material, material);
