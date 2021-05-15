@@ -47,8 +47,11 @@ int main(int argc, char **argv)
     char material[30];
     char freno[20];
     char cuentaKm[20];
-    char precioPer[20];
+    float precio;
     char fechaDeCompra[20];
+    char precioPer[20];
+    int autonomia;
+    int disponibles;
 
     strcpy(marca, "");
     strcpy(modelo, "");
@@ -59,8 +62,12 @@ int main(int argc, char **argv)
     strcpy(material, "Aluminio reciclado");
     strcpy(freno, "Mecanico");
     strcpy(cuentaKm, "Garmin 530");
-    strcpy(precioPer, "199");
-    Personalizacion *p1 = new Personalizacion(marca, modelo, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
+    //strcpy(precioPer, "199");
+    precio = 199;
+    autonomia = 300;
+    disponibles = 3;
+
+    Personalizacion *p1 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
 
     strcpy(nombre, "Ecopack Water");
     strcpy(color, "Azul");
@@ -69,7 +76,7 @@ int main(int argc, char **argv)
     strcpy(cuentaKm, "Garmin 630");
     strcpy(precioPer, "299");
 
-    Personalizacion *p2 = new Personalizacion(marca, modelo, 0.0f, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
+    Personalizacion *p2 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
 
     strcpy(nombre, "Ecopack Fire");
     strcpy(color, "Rojo");
@@ -78,7 +85,7 @@ int main(int argc, char **argv)
     strcpy(cuentaKm, "Garmin 830");
     strcpy(precioPer, "399");
 
-    Personalizacion *p3 = new Personalizacion(marca, modelo, 0.0f, nombre, color, material, freno, cuentaKm, precioPer, fechaDeCompra);
+    Personalizacion *p3 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
 
     int s = 0;
 
@@ -171,8 +178,7 @@ void verFacturas()
          << "Hay " << cont << " facturas pendientes" << endl;
 }
 
-//hacer metodo para personalizar ventas**********************************
-
+//hacer metodo para personalizar ventas
 void personalizarVentas(Personalizacion *p1, Personalizacion *p2, Personalizacion *p3)
 {
     ifstream reader;
@@ -290,10 +296,10 @@ void personalizarVentas(Personalizacion *p1, Personalizacion *p2, Personalizacio
             }
             fecha = linea.substr(18, pos);
 
-            EcoVehiculo ecovh(marca, modelo, precio);
-            EcoVehiculos[cont] = ecovh;
-            fechas[cont] = fecha;
-            cont++;
+            // EcoVehiculo ecovh(marca, modelo, autonomia, precio, disponibles);
+            // EcoVehiculos[cont] = ecovh;
+            // fechas[cont] = fecha;
+            // cont++;
         }
     }
     reader.close();
@@ -399,9 +405,7 @@ void listarVentas()
             in.read((char *)&ecoVP, sizeof(ecoVP));
             if (!in.eof())
             {
-                Personalizacion *p = new Personalizacion(ecoVP.marca, ecoVP.modelo, ecoVP.autonomia,
-                                                         ecoVP.precio, ecoVP.disponibles, ecoVP.nombre, ecoVP.color, ecoVP.material,
-                                                         ecoVP.fechaDeCompra, ecoVP.freno, ecoVP.cuentaKm);
+                Personalizacion *p = new Personalizacion(ecoVP.marca, ecoVP.modelo, ecoVP.nombre, ecoVP.color, ecoVP.material, ecoVP.fechaDeCompra, ecoVP.freno, ecoVP.cuentaKm, ecoVP.autonomia, ecoVP.precio, ecoVP.disponibles);
                 p->imprimir();
             }
         }
@@ -449,7 +453,8 @@ void estadisticas()
             in1.read((char *)&ecoVP, sizeof(ecoVP));
             if (!in1.eof())
             {
-                persons[cont] = new Personalizacion(ecoVP.marca, ecoVP.modelo, ecoVP.disponibles, ecoVP.nombre, ecoVP.color, ecoVP.material, ecoVP.fechaDeCompra, ecoVP.freno, ecoVP.cuentaKm, ecoVP.precioPer);
+                persons[cont] = new Personalizacion(ecoVP.marca, ecoVP.modelo, ecoVP.nombre, ecoVP.color, ecoVP.material, ecoVP.fechaDeCompra, ecoVP.freno, ecoVP.cuentaKm, ecoVP.autonomia, ecoVP.precio, ecoVP.disponibles);
+
                 cuenta[cont] = 1;
                 cont++;
             }
