@@ -8,6 +8,7 @@ extern "C"
 #include "bd.h"
 #include <iostream>
 #include <string.h>
+
 using namespace std;
 
 BD::BD(char *nbd)

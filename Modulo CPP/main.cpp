@@ -158,12 +158,9 @@ int main(int argc, char **argv)
         } while (s != 0);
 
         return 0;
-    }
+    } while (resul != 2 && intentos < 3);
+    return 0;
 }
-while (resul != 2 && intentos < 3)
-    ;
-
-return 0;
 
 void verFacturas()
 {
