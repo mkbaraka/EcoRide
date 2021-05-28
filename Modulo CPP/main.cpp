@@ -38,129 +38,129 @@ void personalizarVentas(Personalizacion *, Personalizacion *, Personalizacion *)
 void listarVentas();
 void estadisticas();
 
-int main(int argc, char **argv)
-{
+// int main(int argc, char **argv)
+// {
 
-    char marca[20];
-    char modelo[20];
-    char nombre[20];
-    char color[20];
-    char material[30];
-    char freno[20];
-    char cuentaKm[20];
-    float precio;
-    char fechaDeCompra[20];
-    char precioPer[20];
-    int autonomia;
-    int disponibles;
+//     char marca[20];
+//     char modelo[20];
+//     char nombre[20];
+//     char color[20];
+//     char material[30];
+//     char freno[20];
+//     char cuentaKm[20];
+//     float precio;
+//     char fechaDeCompra[20];
+//     char precioPer[20];
+//     int autonomia;
+//     int disponibles;
 
-    strcpy(marca, "");
-    strcpy(modelo, "");
-    strcpy(fechaDeCompra, "");
+//     strcpy(marca, "");
+//     strcpy(modelo, "");
+//     strcpy(fechaDeCompra, "");
 
-    strcpy(nombre, "Ecopack Nature");
-    strcpy(color, "gris");
-    strcpy(material, "Aluminio reciclado");
-    strcpy(freno, "Mecanico");
-    strcpy(cuentaKm, "Garmin 530");
-    //strcpy(precioPer, "199");
-    precio = 199;
-    autonomia = 300;
-    disponibles = 3;
+//     strcpy(nombre, "Ecopack Nature");
+//     strcpy(color, "gris");
+//     strcpy(material, "Aluminio reciclado");
+//     strcpy(freno, "Mecanico");
+//     strcpy(cuentaKm, "Garmin 530");
+//     //strcpy(precioPer, "199");
+//     precio = 199;
+//     autonomia = 300;
+//     disponibles = 3;
 
-    Personalizacion *p1 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
+//     Personalizacion *p1 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
 
-    strcpy(nombre, "Ecopack Water");
-    strcpy(color, "Azul");
-    strcpy(material, "Fibra de vidrio Reciclada");
-    strcpy(freno, "Mecanico");
-    strcpy(cuentaKm, "Garmin 630");
-    strcpy(precioPer, "299");
+//     strcpy(nombre, "Ecopack Water");
+//     strcpy(color, "Azul");
+//     strcpy(material, "Fibra de vidrio Reciclada");
+//     strcpy(freno, "Mecanico");
+//     strcpy(cuentaKm, "Garmin 630");
+//     strcpy(precioPer, "299");
 
-    Personalizacion *p2 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
+//     Personalizacion *p2 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
 
-    strcpy(nombre, "Ecopack Fire");
-    strcpy(color, "Rojo");
-    strcpy(material, "Fibra de carbono Reciclada");
-    strcpy(freno, "Hidraulico");
-    strcpy(cuentaKm, "Garmin 830");
-    strcpy(precioPer, "399");
+//     strcpy(nombre, "Ecopack Fire");
+//     strcpy(color, "Rojo");
+//     strcpy(material, "Fibra de carbono Reciclada");
+//     strcpy(freno, "Hidraulico");
+//     strcpy(cuentaKm, "Garmin 830");
+//     strcpy(precioPer, "399");
 
-    Personalizacion *p3 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
+//     Personalizacion *p3 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
 
-    BD bd("BaseDeDatos.db");
-    bd.crearBD();
-    bd.abrirBD();
-    /*bd.insertarPersona("111A",19);
-    bd.insertarPersona("222B",21);
-    bd.abrirBD();
-    bd.mostrarTodosLasPersonas();
-    bd.borrarPersona("111A");
-    bd.mostrarTodosLasPersonas();*/
-    bd.insertarPersona("mikel", "mikel");
-    bd.insertarPersona("jose", "jose");
-    bd.insertarPersona("xabier", "xabier");
+//     BD bd("BaseDeDatos.db");
+//     bd.crearBD();
+//     bd.abrirBD();
+//     /*bd.insertarPersona("111A",19);
+//     bd.insertarPersona("222B",21);
+//     bd.abrirBD();
+//     bd.mostrarTodosLasPersonas();
+//     bd.borrarPersona("111A");
+//     bd.mostrarTodosLasPersonas();*/
+//     bd.insertarPersona("mikel", "mikel");
+//     bd.insertarPersona("jose", "jose");
+//     bd.insertarPersona("xabier", "xabier");
 
-    int s = 0;
-    char usu[10], con[10];
-    int intentos = 0, resul;
-    do
-    {
-        cout << "Introduce nombre de usuario: ";
-        cin >> usu;
-        cout << "Introduce la contraseña: ";
-        cin >> con;
-        intentos++;
-        resul = bd.comprobarLogin(usu, con);
-        if (resul == 0)
-            cout << "El nick no es correcto" << endl;
-        else if (resul == 1)
-            cout << "Contreña incorrecta" << endl;
-        else
-            cout << "Usuario log" << endl;
-        do
-        {
-            cout << endl
-                 << endl;
-            cout << "==============================================" << endl;
-            cout << "EcoRide tu tienda de Vehiculos EcoFriendly" << endl;
-            cout << "Seleccione una opcion:" << endl;
-            cout << "1. Visualizar facturas pendientes " << endl;
-            cout << "2. Personalizar EcoVentas" << endl;
-            cout << "3. Visualizara ventas" << endl;
-            cout << "4. Estadisticas" << endl;
-            cout << "0. Exit" << endl;
+//     int s = 0;
+//     char usu[10], con[10];
+//     int intentos = 0, resul;
+//     do
+//     {
+//         cout << "Introduce nombre de usuario: ";
+//         cin >> usu;
+//         cout << "Introduce la contraseña: ";
+//         cin >> con;
+//         intentos++;
+//         resul = bd.comprobarLogin(usu, con);
+//         if (resul == 0)
+//             cout << "El nick no es correcto" << endl;
+//         else if (resul == 1)
+//             cout << "Contreña incorrecta" << endl;
+//         else
+//             cout << "Usuario log" << endl;
+//         do
+//         {
+//             cout << endl
+//                  << endl;
+//             cout << "==============================================" << endl;
+//             cout << "EcoRide tu tienda de Vehiculos EcoFriendly" << endl;
+//             cout << "Seleccione una opcion:" << endl;
+//             cout << "1. Visualizar facturas pendientes " << endl;
+//             cout << "2. Personalizar EcoVentas" << endl;
+//             cout << "3. Visualizara ventas" << endl;
+//             cout << "4. Estadisticas" << endl;
+//             cout << "0. Exit" << endl;
 
-            fflush(stdin);
-            scanf("%i", &s);
-            printf("\n\n");
+//             fflush(stdin);
+//             scanf("%i", &s);
+//             printf("\n\n");
 
-            switch (s)
-            {
-            case 1:
-                verFacturas();
-                break;
-            case 2:
-                personalizarVentas(p1, p2, p3);
-                break;
-            case 3:
-                listarVentas();
-                break;
-            case 4:
-                estadisticas();
-                break;
-            case 0:
-                cout << "Gracias por confiar en ecoRide, nos vemos pronto!!\n";
-                break;
-            default:
-                cout << "Error introduce un numero valido\n";
-            }
-        } while (s != 0);
+//             switch (s)
+//             {
+//             case 1:
+//                 verFacturas();
+//                 break;
+//             case 2:
+//                 personalizarVentas(p1, p2, p3);
+//                 break;
+//             case 3:
+//                 listarVentas();
+//                 break;
+//             case 4:
+//                 estadisticas();
+//                 break;
+//             case 0:
+//                 cout << "Gracias por confiar en ecoRide, nos vemos pronto!!\n";
+//                 break;
+//             default:
+//                 cout << "Error introduce un numero valido\n";
+//             }
+//         } while (s != 0);
 
-        return 0;
-    } while (resul != 2 && intentos < 3);
-    return 0;
-}
+//         return 0;
+//     } while (resul != 2 && intentos < 3);
+//     return 0;
+// }
 
 void verFacturas()
 {
