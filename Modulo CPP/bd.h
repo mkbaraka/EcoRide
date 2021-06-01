@@ -8,6 +8,8 @@ extern "C"
 }
 #endif
 
+#include "bd.cpp"
+
 class BD
 {
     sqlite3 *db;
