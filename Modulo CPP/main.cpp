@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,9 +7,8 @@
 #include <time.h>
 
 #include "ecoVehiculo.h"
-#include "personalizacion.h"
 #include "bd.h"
-
+#include "personalizacion.h"
 //introducir los ficheros (CAMBIAR NOMBRES)
 #define FicheroFacturacion "EcoVehiculo_compras.txt"
 #define FicheroVentas "Ventas.dat"
@@ -41,6 +41,7 @@ void estadisticas();
 int main(int argc, char **argv)
 {
 
+
     char marca[20];
     char modelo[20];
     char nombre[20];
@@ -69,7 +70,6 @@ int main(int argc, char **argv)
     disponibles = 3;
 
     Personalizacion *p1 = new Personalizacion(marca, modelo, nombre, color, material, fechaDeCompra, freno, cuentaKm, autonomia, precio, disponibles);
-
     strcpy(nombre, "Ecopack Water");
     strcpy(color, "Azul");
     strcpy(material, "Fibra de vidrio Reciclada");
@@ -97,9 +97,9 @@ int main(int argc, char **argv)
     bd.mostrarTodosLasPersonas();
     bd.borrarPersona("111A");
     bd.mostrarTodosLasPersonas();*/
-    bd.insertarPersona("mikel", "mikel");
-    bd.insertarPersona("jose", "jose");
-    bd.insertarPersona("xabier", "xabier");
+    //bd.insertarPersona("mikel", "mikel");
+    //bd.insertarPersona("jose", "jose");
+    //bd.insertarPersona("xabier", "xabier");
 
     int s = 0;
     char usu[10], con[10];
@@ -108,57 +108,59 @@ int main(int argc, char **argv)
     {
         cout << "Introduce nombre de usuario: ";
         cin >> usu;
-        cout << "Introduce la contraseÃ±a: ";
+        cout << "Introduce la contraseña: ";
         cin >> con;
         intentos++;
         resul = bd.comprobarLogin(usu, con);
         if (resul == 0)
             cout << "El nick no es correcto" << endl;
         else if (resul == 1)
-            cout << "ContreÃ±a incorrecta" << endl;
+            cout << "Contraseña incorrecta" << endl;
         else
             cout << "Usuario log" << endl;
+    } while (resul != 2 && intentos < 3);
+    if(resul==2){
         do
         {
-            cout << endl
-                 << endl;
-            cout << "==============================================" << endl;
-            cout << "EcoRide tu tienda de Vehiculos EcoFriendly" << endl;
-            cout << "Seleccione una opcion:" << endl;
-            cout << "1. Visualizar facturas pendientes " << endl;
-            cout << "2. Personalizar EcoVentas" << endl;
-            cout << "3. Visualizara ventas" << endl;
-            cout << "4. Estadisticas" << endl;
-            cout << "0. Exit" << endl;
+                cout << endl
+                     << endl;
+                cout << "==============================================" << endl;
+                cout << "EcoRide tu tienda de Vehiculos EcoFriendly" << endl;
+                cout << "Seleccione una opcion:" << endl;
+                cout << "1. Visualizar facturas pendientes " << endl;
+                cout << "2. Personalizar EcoVentas" << endl;
+                cout << "3. Visualizar ventas" << endl;
+                cout << "4. Estadisticas" << endl;
+                cout << "0. Exit" << endl;
 
-            fflush(stdin);
-            scanf("%i", &s);
-            printf("\n\n");
+                fflush(stdin);
+                scanf("%i", &s);
+                printf("\n\n");
 
-            switch (s)
-            {
-            case 1:
-                verFacturas();
-                break;
-            case 2:
-                personalizarVentas(p1, p2, p3);
-                break;
-            case 3:
-                listarVentas();
-                break;
-            case 4:
-                estadisticas();
-                break;
-            case 0:
-                cout << "Gracias por confiar en ecoRide, nos vemos pronto!!\n";
-                break;
-            default:
-                cout << "Error introduce un numero valido\n";
-            }
-        } while (s != 0);
+                switch (s)
+                {
+                case 1:
+                    verFacturas();
+                    break;
+                case 2:
+                    personalizarVentas(p1, p2, p3);
+                    break;
+                case 3:
+                    //listarVentas();
+                	//visualizarVentas(BD);
+                    break;
+                case 4:
+                    estadisticas();
+                    break;
+                case 0:
+                    cout << "Gracias por confiar en ecoRide, nos vemos pronto!!\n";
+                    break;
+                default:
+                    cout << "Error introduce un numero valido\n";
+                }
+            } while (s != 0);
 
-        return 0;
-    } while (resul != 2 && intentos < 3);
+    }
     return 0;
 }
 
@@ -210,7 +212,7 @@ void verFacturas()
          << "Hay " << cont << " facturas pendientes" << endl;
 }
 
-//hacer metodo para personalizar ventas
+//metodo para personalizar ventas
 void personalizarVentas(Personalizacion *p1, Personalizacion *p2, Personalizacion *p3)
 {
     ifstream reader;
@@ -555,3 +557,6 @@ void estadisticas()
         }
     }
 }
+
+
+
